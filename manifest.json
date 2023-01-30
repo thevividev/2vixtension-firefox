@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "2VIxtension",
+  "description": "Get notified when TheVivi is streaming",
+  "version": "1.0.0",
+  "icons": {
+    "16": "/assets/16.png",
+    "48": "/assets/48.png",
+    "128": "/assets/128.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "permissions": [
+    "notifications",
+    "webRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://bretheskevin.fr/public-api/thevivi/is-streaming"
+  ]
+}
