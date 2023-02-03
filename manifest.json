@@ -9,8 +9,7 @@
     "128": "/assets/128.png"
   },
   "background": {
-    "scripts": ["background.js"],
-    "persistent": true
+    "scripts": ["background.js"]
   },
   "permissions": [
     "notifications",

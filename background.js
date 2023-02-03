@@ -4,7 +4,6 @@ let previousData = {
     "lastLive": null,
     "title": ""
 };
-setPreviousData();
 
 setInterval(async () => {
     getPreviousData();
@@ -30,14 +29,19 @@ browser.notifications.onClicked.addListener(function(event){
 
 function getPreviousData() {
     browser.storage.sync.get("thevivi").then((result) => {
-        previousData = result.thevivi;
+        previousData = result.thevivi || previousData;
     });
 }
 
-function setPreviousData() {
+function setPreviousData(data) {
+    previousData = data;
     browser.storage.sync.set({thevivi: previousData});
 }
 
 function shouldSendNotification(previousData, data) {
+    if (previousData.lastLive == null) {
+        return true
+    }
+
     return data.isLive && !previousData.isLive && (data.lastLive !== previousData.lastLive);
 }
