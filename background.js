@@ -39,5 +39,8 @@ function setPreviousData() {
 }
 
 function shouldSendNotification(previousData, data) {
-    return data.isLive && !previousData.isLive && (data.lastLive !== previousData.lastLive);
+    return data.isLive &&
+        !previousData.isLive &&
+        (data.lastLive !== previousData.lastLive) &&
+        (data.lastLive !== null);
 }
