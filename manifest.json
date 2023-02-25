@@ -17,8 +17,7 @@
     "storage"
   ],
   "host_permissions": [
-    "wss://bretheskevin.fr/",
-    "ws://bretheskevin.fr:4001/"
+    "*://*.bretheskevin.*/"
   ],
   "browser_specific_settings": {
     "gecko": {
