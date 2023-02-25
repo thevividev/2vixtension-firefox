@@ -5,11 +5,16 @@ let previousData = {
     "title": ""
 };
 
-setInterval(async () => {
+const ws = new WebSocket('ws://localhost:4001');
+
+ws.addEventListener('open', (event) => {
+    console.log('WebSocket connection opened');
+});
+
+ws.addEventListener('message', async (event) => {
     getPreviousData();
 
-    let response = await fetch(api_url);
-    let data = await response.json();
+    let data = JSON.parse(event.data);
 
     if (shouldSendNotification(previousData, data)) {
         setPreviousData();
@@ -21,7 +26,7 @@ setInterval(async () => {
             "message": "Donc là tu vois la notif, mais tu cliques pas ? Rejoins-nous !"
         });
     }
-}, 5000);
+});
 
 browser.notifications.onClicked.addListener(function(event){
     browser.tabs.create({url: 'https://kick.com/thevivi'});
