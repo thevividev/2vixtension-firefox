@@ -1,11 +1,10 @@
-let api_url = "https://bretheskevin.fr/public-api/thevivi/is-streaming";
 let previousData = {
     "isLive": false,
     "lastLive": null,
     "title": ""
 };
 
-const ws = new WebSocket('ws://localhost:4001');
+const ws = new WebSocket('ws://bretheskevin.fr:4001');
 
 ws.addEventListener('open', (event) => {
     console.log('WebSocket connection opened');
