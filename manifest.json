@@ -16,9 +16,6 @@
     "notifications",
     "storage"
   ],
-  "host_permissions": [
-    "*://*.bretheskevin.*/"
-  ],
   "browser_specific_settings": {
     "gecko": {
       "id": "bretheskevin@gmail.com"
