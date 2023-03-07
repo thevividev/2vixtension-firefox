@@ -1,6 +1,6 @@
 importScripts("websocketawake.js");
 
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 const NOTIFICATION_MESSAGE = "Donc là tu vois la notif, mais tu cliques pas ? Rejoins-nous !";
 const NOTIFICATION_OPTIONS = {
     "type": "basic",
