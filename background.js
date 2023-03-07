@@ -1,6 +1,6 @@
 importScripts("websocketawake.js");
 
-const DEBUG_MODE = false;
+const DEBUG_MODE = true;
 const NOTIFICATION_MESSAGE = "Donc là tu vois la notif, mais tu cliques pas ? Rejoins-nous !";
 const NOTIFICATION_OPTIONS = {
     "type": "basic",
@@ -14,8 +14,22 @@ ws.addEventListener('open', () => {
 });
 
 ws.addEventListener('message', async (event) => {
+    let data = JSON.parse(event.data);
+    let value = data.data;
+
+
+    switch (data.key) {
+        case "stream":
+            streamEvent(value);
+            break;
+        case "custom-notif":
+            customNotifEvent(value);
+            break;
+    }
+});
+
+async function streamEvent(currentData) {
     const previousData = await getPreviousData();
-    const currentData = JSON.parse(event.data);
 
     if (shouldSendNotification(previousData, currentData)) {
         await setPreviousData(currentData);
@@ -26,7 +40,15 @@ ws.addEventListener('message', async (event) => {
             "message": NOTIFICATION_MESSAGE
         });
     }
-});
+}
+
+function customNotifEvent(data) {
+    browser.notifications.create({
+        ...NOTIFICATION_OPTIONS,
+        "title": data.title,
+        "message": data.message
+    });
+}
 
 browser.notifications.onClicked.addListener(() => {
     browser.tabs.create({url: 'https://kick.com/thevivi'});
